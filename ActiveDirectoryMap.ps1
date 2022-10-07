@@ -9,7 +9,6 @@ function LoadADModule {
     Import-Module ([Reflection.Assembly]::Load($UncompressedFileBytes))
 }
 
-
 Function UsersList{
     $Counter =  (Get-ADUser -Filter * -Properties * | ForEach-Object{$Users}).Count
     Write-Host  -ForegroundColor Yellow "[+] Users Found: $Counter `n"
@@ -18,7 +17,6 @@ Function UsersList{
     Write-Host -ForegroundColor Green $Users 
     }
 } 
-
 
 Function GroupsList{
     $Counter =  (Get-ADGroup -Filter * -Properties * | ForEach-Object{$groups}).Count
@@ -39,8 +37,6 @@ Function GroupMembership{
     }
 }
 
-
-
 Function DoesNotRequirePreAuth{
     Write-Host -ForegroundColor Yellow "[!] Users which don't require Pre-Auth:"
     foreach($user in Get-ADUser -Filter {DoesNotRequirePreAuth -eq $True} -Properties DoesNotRequirePreAuth |
@@ -49,7 +45,6 @@ Function DoesNotRequirePreAuth{
     }  
 }
 
-
 Function ServicePrincipalName{
     Write-Host -ForegroundColor Yellow "[!] Users which have Service Principal Name:"
     foreach ($user in Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName|
@@ -57,7 +52,6 @@ Function ServicePrincipalName{
         Write-Host -ForegroundColor Red "$user"
         }
 }
-
 
 Function Help{
     Write-Host "Functions Available:" -foregroundcolor Cyan
