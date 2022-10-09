@@ -32,7 +32,7 @@ Function GroupMembership {
         $Users = $_.SamAccountName
         foreach($user in $Users ) {
             write-host "`n-=[+] $user [+]=-" -foregroundcolor green
-            (Get-ADPrincipalGroupMembership -Identity $user).Name
+            (Get-ADPrincipalGroupMembership -Identity $user).SamAccountName
         }
     }
 }
@@ -40,7 +40,7 @@ Function GroupMembership {
 Function DoesNotRequirePreAuth {
     Write-Host -ForegroundColor Yellow "[!] Users which don't require Pre-Auth:"
     foreach($user in Get-ADUser -Filter {DoesNotRequirePreAuth -eq $True} -Properties DoesNotRequirePreAuth |
-    ForEach-Object{$_.Name}) {
+    ForEach-Object{$_.SamAccountName}) {
         Write-Host -ForegroundColor Red "$user"
     }  
 }
@@ -48,8 +48,10 @@ Function DoesNotRequirePreAuth {
 Function ServicePrincipalName {
     Write-Host -ForegroundColor Yellow "[!] Users which have Service Principal Name:"
     foreach ($user in Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName|
-        ForEach-Object{$_.Name} ) {
+        ForEach-Object{$_.SamAccountName} ) {
+            if ($user -eq "krbtgt"){continue}
             Write-Host -ForegroundColor Red "$user"
+            setspn.exe -L $user;"`n"
         }
 }
 
