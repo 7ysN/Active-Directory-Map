@@ -9,25 +9,25 @@ function LoadADModule {
     Import-Module ([Reflection.Assembly]::Load($UncompressedFileBytes))
 }
 
-Function UsersList{
+Function UsersList {
     $Counter =  (Get-ADUser -Filter * -Properties * | ForEach-Object{$Users}).Count
     Write-Host  -ForegroundColor Yellow "[+] Users Found: $Counter `n"
-    Get-ADUser -Filter * -Properties * | ForEach-Object{
-    $Users = $_.SamAccountName
-    Write-Host -ForegroundColor Green $Users 
+    Get-ADUser -Filter * -Properties * | ForEach-Object {
+        $Users = $_.SamAccountName
+        Write-Host -ForegroundColor Green $Users 
     }
 } 
 
-Function GroupsList{
+Function GroupsList {
     $Counter =  (Get-ADGroup -Filter * -Properties * | ForEach-Object{$groups}).Count
     Write-Host  -ForegroundColor Yellow "[+] Groups Found: $Counter `n"
-    Get-ADGroup -Filter * -Properties * | ForEach-Object{
-    $groups = $_.SamAccountName
-    Write-Host -ForegroundColor Green $groups
+    Get-ADGroup -Filter * -Properties * | ForEach-Object {
+        $groups = $_.SamAccountName
+        Write-Host -ForegroundColor Green $groups
     }
 }
 
-Function GroupMembership{
+Function GroupMembership {
     Get-ADUser -Filter * -Properties * | ForEach-Object {
         $Users = $_.SamAccountName
         foreach($user in $Users ) {
@@ -37,23 +37,23 @@ Function GroupMembership{
     }
 }
 
-Function DoesNotRequirePreAuth{
+Function DoesNotRequirePreAuth {
     Write-Host -ForegroundColor Yellow "[!] Users which don't require Pre-Auth:"
     foreach($user in Get-ADUser -Filter {DoesNotRequirePreAuth -eq $True} -Properties DoesNotRequirePreAuth |
-    ForEach-Object{$_.Name}){
-    Write-Host -ForegroundColor Red "$user"
+    ForEach-Object{$_.Name}) {
+        Write-Host -ForegroundColor Red "$user"
     }  
 }
 
-Function ServicePrincipalName{
+Function ServicePrincipalName {
     Write-Host -ForegroundColor Yellow "[!] Users which have Service Principal Name:"
     foreach ($user in Get-ADUser -Filter {ServicePrincipalName -ne "$null"} -Properties ServicePrincipalName|
-        ForEach-Object{$_.Name} ){
-        Write-Host -ForegroundColor Red "$user"
+        ForEach-Object{$_.Name} ) {
+            Write-Host -ForegroundColor Red "$user"
         }
 }
 
-Function Help{
+Function Help {
     Write-Host "Functions Available:" -foregroundcolor Cyan
     Write-Host "[+] UsersList" -ForegroundColor Yellow
     Write-Host "To List All Domain Users`n" -foregroundcolor Green  
