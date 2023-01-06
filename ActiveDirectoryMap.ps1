@@ -13,32 +13,31 @@ Function UsersList {
     $Counter =  (Get-ADUser -Filter * -Properties * | ForEach-Object{$Users}).Count
     Write-Host  -ForegroundColor Yellow "[+] Users Found: $Counter `n"
     Get-ADUser -Filter * -Properties * | ForEach-Object {
-        $Users = $_.SamAccountName
-        Write-Host -ForegroundColor Green $Users 
+        $Users = $_.SamAccountName >> Users.txt;
     }
+    Write-Host -ForegroundColor Green "Check The File:  Users.txt"
 } 
 
 Function GroupsList {
     $Counter =  (Get-ADGroup -Filter * -Properties * | ForEach-Object{$groups}).Count
     Write-Host  -ForegroundColor Yellow "[+] Groups Found: $Counter `n"
     Get-ADGroup -Filter * -Properties * | ForEach-Object {
-        $groups = $_.SamAccountName
-        Write-Host -ForegroundColor Green $groups
+        $groups = $_.SamAccountName >> Groups.txt;
     }
+    Write-Host -ForegroundColor Green "Check The File:  Groups.txt"
 }
 
-Function GroupMembership {
-    Get-ADUser -Filter * -Properties * | ForEach-Object {
-        $Users = $_.SamAccountName
-        foreach($user in $Users ) {
+Function UsersMembership {        
+        foreach($user in cat Users.txt) {
             write-host "`n-=[+] $user [+]=-" -foregroundcolor green
-            (Get-ADPrincipalGroupMembership -Identity $user).SamAccountName
+            (Get-ADPrincipalGroupMembership -Identity $user).SamAccountName 
+
         }
     }
-}
+
 
 Function DoesNotRequirePreAuth {
-    Write-Host -ForegroundColor Yellow "[!] Users which don't require Pre-Auth:"
+    Write-Host -ForegroundColor Yellow "[!] Users which don't require Kerberos Pre-Auth:"
     foreach($user in Get-ADUser -Filter {DoesNotRequirePreAuth -eq $True} -Properties DoesNotRequirePreAuth |
     ForEach-Object{$_.SamAccountName}) {
         Write-Host -ForegroundColor Red "$user"
@@ -61,10 +60,10 @@ Function Help {
     Write-Host "To List All Domain Users`n" -foregroundcolor Green  
     Write-Host "[+] GroupsList" -ForegroundColor Yellow
     Write-Host "To List All Domain Groups`n" -foregroundcolor Green 
-    Write-Host "[+] GroupMembership" -ForegroundColor Yellow
+    Write-Host "[+] UsersMembership" -ForegroundColor Yellow
     Write-Host "To Check The User's Group Membership`n" -foregroundcolor Green
     Write-Host "[+] DoesNotRequirePreAuth" -ForegroundColor Yellow
-    Write-Host "To List All Users Which Don't Require Pre-Auth`n" -foregroundcolor Green
+    Write-Host "To List All Users Which Don't Require Kerberos Pre-Auth`n" -foregroundcolor Green
     Write-Host "[+] ServicePrincipalName" -ForegroundColor Yellow
     Write-Host "To List All Users Which have Service Principal Name`n" -foregroundcolor Green
 }
