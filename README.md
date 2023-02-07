@@ -13,26 +13,29 @@
 **The script contains multiple functions:**
 1. **UsersList** - `To List All Domain Users`
 2. **GroupsList** - `To List All Domain Groups`
-3. **GroupMembership** - `To Check The User's Group Membership`
+3. **UsersMembership** - `To Check The User's Group Membership`
 4. **DoesNotRequirePreAuth** - `To List All Users Which Don't Require Pre-Auth`
 5. **ServicePrincipalName** - `To List All Users Which have Service Principal Name`
 6. **Help** - `To see all available functions in this script`
 
-----
-## Examples:
-### 1. Help
-![2](https://user-images.githubusercontent.com/62604022/193839009-32134720-8edf-48e8-b240-a205e0975d95.png)
 
-### 2. UsersList
+## Examples
+### 1. Help:
+![2023-02-07 15_13_53-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217254691-aef9847b-14da-4f29-afd7-22c930fee433.png)
 
-![3](https://user-images.githubusercontent.com/62604022/193839047-eeea615a-8a24-453b-8150-1cf00bcc0b69.png)
+### 2. UsersList:
+![2023-02-07 15_05_46-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217253937-24fc059b-7d39-454b-b7f6-20d077fd9b3d.png)
 
-### 3. GroupsList
+### 3. GroupsList:
+![2023-02-07 15_06_00-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217254065-998ee4cd-e72f-4d13-95f1-26231b6b4f77.png)
 
-![4](https://user-images.githubusercontent.com/62604022/193839065-c12cc4a6-5a94-43e9-997f-f7ccc28cf036.png)
+### 4. UsersMembership:
+![2023-02-07 14_37_44-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217254393-d34ae181-f15c-4b8b-b40c-55ccb5d9e543.png)
 
-### 4. GroupMembership
-![5](https://user-images.githubusercontent.com/62604022/193839083-b9fe35ca-a6b6-4cb1-bb94-ab2618a0130a.png)
+### 5. DoesNotRequirePreAuth: 
+![2023-02-07 15_11_43-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217254439-4dbdf759-68c9-4447-a63d-ab3488303779.png)
 
-### 5. DoesNotRequirePreAuth & ServicePrincipalName  
-![6](https://user-images.githubusercontent.com/62604022/193838494-beb33c5e-ca85-43b1-ad3d-c72c8fc19687.png)
+### 6. ServicePrincipalName:
+![2023-02-07 15_06_51-win10 (win10 clear)  Running  - Oracle VM VirtualBox](https://user-images.githubusercontent.com/62604022/217254463-df0f78bd-7c56-4f54-9302-fd2a984ffbec.png)
+
+## Good Luck !
