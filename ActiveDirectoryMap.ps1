@@ -10,21 +10,23 @@ function LoadADModule {
 }
 
 Function UsersList {
+    Write-Host -ForegroundColor Yellow "[+] Creating A Users List....."
     $Counter =  (Get-ADUser -Filter * -Properties * | ForEach-Object{$Users}).Count
-    Write-Host  -ForegroundColor Yellow "[+] Users Found: $Counter `n"
+    Write-Host  -ForegroundColor Yellow "[+] Users Found: $Counter"
     Get-ADUser -Filter * -Properties * | ForEach-Object {
         $Users = $_.SamAccountName >> Users.txt;
     }
-    Write-Host -ForegroundColor Green "Check The File:  Users.txt"
+    Write-Host -ForegroundColor Green "[+] CHECK THE FILE: Users.txt"
 } 
 
 Function GroupsList {
+    Write-Host -ForegroundColor Yellow "[+] Creating A Groups List....."
     $Counter =  (Get-ADGroup -Filter * -Properties * | ForEach-Object{$groups}).Count
-    Write-Host  -ForegroundColor Yellow "[+] Groups Found: $Counter `n"
+    Write-Host  -ForegroundColor Yellow "[+] Groups Found: $Counter"
     Get-ADGroup -Filter * -Properties * | ForEach-Object {
         $groups = $_.SamAccountName >> Groups.txt;
     }
-    Write-Host -ForegroundColor Green "Check The File:  Groups.txt"
+    Write-Host -ForegroundColor Green "[+] CHECK THE FILE: Groups.txt"
 }
 
 Function UsersMembership {
