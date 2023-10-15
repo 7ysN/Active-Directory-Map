@@ -1,4 +1,4 @@
-# Author: Yuval Saban
+
 # This Script loads the Active Directory Module DLL into system memory and helps map the Domain environment.
 
 function LoadADModule {
