@@ -58,19 +58,25 @@ Function ServicePrincipalName {
 }
 
 Function Help {
-    Write-Host "Functions Available:" -foregroundcolor Cyan
-    Write-Host "[+] UsersList" -ForegroundColor Yellow
+    Write-Host "Available Functions:" -foregroundcolor Cyan
+    Write-Host "1. UsersList" -ForegroundColor Yellow
     Write-Host "To List All Domain Users`n" -foregroundcolor Green  
-    Write-Host "[+] GroupsList" -ForegroundColor Yellow
+    Write-Host "2. GroupsList" -ForegroundColor Yellow
     Write-Host "To List All Domain Groups`n" -foregroundcolor Green 
-    Write-Host "[+] UsersMembership" -ForegroundColor Yellow
+    Write-Host "3. UsersMembership" -ForegroundColor Yellow
     Write-Host "To Check The User's Group Membership`n" -foregroundcolor Green
-    Write-Host "[+] DoesNotRequirePreAuth" -ForegroundColor Yellow
+    Write-Host "4. DoesNotRequirePreAuth" -ForegroundColor Yellow
     Write-Host "To List All Users Which Don't Require Kerberos Pre-Auth`n" -foregroundcolor Green
-    Write-Host "[+] ServicePrincipalName" -ForegroundColor Yellow
+    Write-Host "5. ServicePrincipalName" -ForegroundColor Yellow
     Write-Host "To List All Users Which have Service Principal Name`n" -foregroundcolor Green
 }
 
-LoadADModule
-Write-Host -ForegroundColor Green "[+] Active Directory Module Has Been Loaded Successfuly`n"
-Write-Host -ForegroundColor Cyan "For More Information Use: Help`n"
+try {
+    Get-ADRootDSE > $null
+} catch {
+    LoadADModule
+   Write-Host -ForegroundColor Green "[+] Active Directory Module Has Been Loaded Successfully `n"
+}
+
+Write-Host -ForegroundColor Yellow "-=Active Directory Map=-`n"
+Help
