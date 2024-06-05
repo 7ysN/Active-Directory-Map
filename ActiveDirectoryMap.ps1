@@ -38,7 +38,6 @@ Function UsersMembership {
         }
     }
 
-
 Function DoesNotRequirePreAuth {
     Write-Host -ForegroundColor Yellow "[!] Users which don't require Kerberos Pre-Auth:"
     foreach($user in Get-ADUser -Filter {DoesNotRequirePreAuth -eq $True} -Properties DoesNotRequirePreAuth |
