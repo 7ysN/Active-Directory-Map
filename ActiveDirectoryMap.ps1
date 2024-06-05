@@ -78,5 +78,6 @@ try {
    Write-Host -ForegroundColor Green "[+] Active Directory Module Has Been Loaded Successfully `n"
 }
 
-Write-Host -ForegroundColor Yellow "-=Active Directory Map=-`n"
+Write-Host -ForegroundColor Yellow "   -=Active Directory Map=-"
+Write-Host -ForegroundColor Green "To List Available Functions: Help`n"
 Help
